@@ -1,0 +1,13 @@
+# Core LLM & RAG stack
+langchain==0.3.25
+langchain-community==0.3.23
+langchain-openai==0.3.16
+
+# Vector store
+faiss-cpu==1.9.0
+
+# OpenAI SDK (used internally by langchain-openai)
+openai==1.82.0
+
+# Environment variable management
+python-dotenv==1.1.0

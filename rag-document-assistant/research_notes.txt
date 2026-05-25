@@ -1,0 +1,83 @@
+RESEARCH NOTES — Vector Databases & Embedding Strategies
+Author: Internal R&D
+Date: Q1 2025
+
+EMBEDDING MODELS COMPARISON
+text-embedding-3-small (OpenAI)
+  - 1536 dimensions
+  - Best cost/performance ratio for most retrieval tasks
+  - Recommended for most production RAG pipelines
+
+text-embedding-3-large (OpenAI)
+  - 3072 dimensions
+  - Higher accuracy on complex semantic similarity benchmarks
+  - 4x more expensive than small
+
+open-source alternatives:
+  - all-MiniLM-L6-v2 (sentence-transformers): fast, free, 384 dimensions
+  - BGE-M3 (BAAI): strong multilingual, 1024 dimensions, runs locally
+  - Nomic Embed: 768 dimensions, Apache 2.0, competitive with OpenAI small
+
+CHUNKING STRATEGIES
+Fixed-size chunking (current approach):
+  - Simple and predictable
+  - chunk_size=500, overlap=50 works well for general prose
+  - Overlap prevents context loss at boundaries
+
+Semantic chunking:
+  - Splits on topic boundaries rather than character count
+  - Better retrieval quality for long structured documents
+  - Higher preprocessing cost
+
+Parent-child chunking:
+  - Store small child chunks for retrieval, large parent chunks for context
+  - Reduces lost context in the generation step
+  - Implemented in LangChain as ParentDocumentRetriever
+
+VECTOR DATABASE OPTIONS
+FAISS (current):
+  - Local, no infra overhead, great for prototyping
+  - No native metadata filtering
+  - Scales to millions of vectors on a single machine
+
+Chroma:
+  - Local or server mode
+  - Built-in metadata filtering
+  - Easy to swap in with LangChain
+
+Pinecone:
+  - Managed cloud vector DB
+  - Sub-10ms query latency at scale
+  - Strong metadata filtering and hybrid search
+
+Weaviate / Qdrant:
+  - Open-source, self-hostable
+  - Rich filtering, multi-tenancy, hybrid search
+  - Good choice for production deployments
+
+RETRIEVAL STRATEGIES
+Similarity search (current):
+  - Straightforward cosine similarity nearest neighbor search
+  - Can miss exact keyword matches
+
+MMR (Maximal Marginal Relevance):
+  - Balances similarity with diversity
+  - Reduces redundant chunks in Top-K results
+  - Use search_type="mmr" in LangChain retriever
+
+Hybrid search:
+  - Combines dense vector search with BM25 keyword search
+  - Best of both worlds for recall
+  - Available in Pinecone, Weaviate, Qdrant
+
+EVALUATION METRICS
+  - Faithfulness: does the answer match the retrieved context?
+  - Answer relevance: does the answer address the question?
+  - Context precision / recall: are the right chunks being retrieved?
+  - Tools: RAGAS framework (ragas.io) recommended for automated RAG evaluation
+
+OPEN ITEMS
+  - Experiment with parent-child chunking for product manuals corpus
+  - Benchmark text-embedding-3-small vs BGE-M3 on internal dataset
+  - Evaluate RAGAS for automated regression testing of answer quality
+  - Consider async embedding pipeline for large document ingestion

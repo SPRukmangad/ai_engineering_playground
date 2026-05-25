@@ -1,0 +1,4 @@
+PRODUCT MANUAL - SmartSense Pro X1
+Version 2.3 | Hardware Revision B
+
+Overview, specs, setup, alert thresholds, maintenance, troubleshooting, warranty...
