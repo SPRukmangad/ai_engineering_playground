@@ -1,0 +1,24 @@
+2025-01-15 03:42:11 INFO  [app] Service starting up. Version: 2.4.1
+2025-01-15 03:42:12 INFO  [db] Connecting to PostgreSQL at db-prod-01:5432
+2025-01-15 03:42:12 INFO  [db] Connection pool initialized. Pool size: 10
+2025-01-15 03:42:13 INFO  [cache] Redis connection established at cache-01:6379
+2025-01-15 03:42:14 INFO  [api] HTTP server listening on port 8080
+2025-01-15 03:44:01 INFO  [api] GET /health 200 OK (4ms)
+2025-01-15 03:45:10 WARN  [db] Connection pool utilization at 80% (8/10 connections in use)
+2025-01-15 03:45:43 WARN  [db] Slow query detected: SELECT * FROM orders WHERE user_id=? took 4821ms
+2025-01-15 03:46:01 WARN  [db] Connection pool utilization at 90% (9/10 connections in use)
+2025-01-15 03:46:15 ERROR [db] Connection pool exhausted. Max pool size: 10. Waiting for available connection...
+2025-01-15 03:46:20 ERROR [db] Timeout waiting for DB connection after 5000ms
+2025-01-15 03:46:20 ERROR [api] Request failed: GET /api/orders/summary - DB connection unavailable
+2025-01-15 03:46:21 ERROR [db] Timeout waiting for DB connection after 5000ms
+2025-01-15 03:46:21 ERROR [api] Request failed: POST /api/checkout - DB connection unavailable
+2025-01-15 03:46:22 ERROR [db] Timeout waiting for DB connection after 5000ms
+2025-01-15 03:46:22 ERROR [db] Timeout waiting for DB connection after 5000ms
+2025-01-15 03:46:22 ERROR [api] 5 consecutive request failures detected. Triggering circuit breaker.
+2025-01-15 03:46:23 CRITICAL [api] Circuit breaker OPEN. All DB-dependent endpoints returning 503.
+2025-01-15 03:46:23 ERROR [monitor] Health check failed: database_connectivity=false
+2025-01-15 03:46:25 WARN  [cache] Falling back to cache for /api/products - stale data may be served
+2025-01-15 03:46:30 ERROR [db] 10 connection timeouts in last 60 seconds
+2025-01-15 03:46:35 CRITICAL [app] FATAL: Unable to recover database connectivity. Initiating shutdown sequence.
+2025-01-15 03:46:35 INFO  [app] Draining in-flight requests (timeout: 30s)
+2025-01-15 03:46:36 INFO  [app] Shutdown complete.
