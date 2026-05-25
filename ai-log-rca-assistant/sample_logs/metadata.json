@@ -1,0 +1,16 @@
+{
+  "service": "order-api",
+  "environment": "production",
+  "version": "2.4.1",
+  "host": "api-prod-03",
+  "region": "us-east-1",
+  "deployment_time": "2025-01-15T02:30:00Z",
+  "db_host": "db-prod-01",
+  "db_pool_size": 10,
+  "recent_deployments": [
+    "2025-01-15T02:30:00Z - order-api v2.4.1 deployed",
+    "2025-01-14T18:00:00Z - db-prod-01 maintenance window completed"
+  ],
+  "on_call_engineer": "platform-team",
+  "incident_id": "INC-20250115-001"
+}

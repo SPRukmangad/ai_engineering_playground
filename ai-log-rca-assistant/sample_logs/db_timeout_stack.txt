@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/app/api/routes/orders.py", line 47, in get_order_summary
+    result = db_session.execute(query, {"user_id": user_id})
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1412, in execute
+    return self._execute_clauseelement(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1631, in _execute_clauseelement
+    compiled_sql, distilled_params, execution_options
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 1844, in _execute_compiled
+    self._handle_dbapi_exception(
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 2033, in _handle_dbapi_exception
+    util.raise_(exc, with_traceback=tb)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 307, in connect
+    return _ConnectionFairy._checkout(self)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 767, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 425, in checkout
+    rec = pool._do_get()
+  File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/impl.py", line 146, in _do_get
+    self._dec_overflow()
+sqlalchemy.exc.TimeoutError: QueuePool limit of size 10 overflow 0 reached,
+connection timed out, timeout 5.0
