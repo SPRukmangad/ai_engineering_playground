@@ -1,0 +1,10 @@
+Analyze the following log data and perform a Root Cause Analysis.
+
+{context}
+
+Based on the evidence above, respond with a JSON object containing:
+- severity
+- subsystem
+- summary
+- root_cause
+- recommendations (as a list of concrete, actionable steps)
