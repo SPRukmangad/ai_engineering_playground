@@ -11,7 +11,7 @@ testing focus areas, and validation recommendations.
 ---
 
 ## Architecture
-
+```
 ┌──────────────────────────────────────────────────────────────────┐
 │ Input Layer                                                      │
 │                                                                  │
@@ -21,29 +21,29 @@ testing focus areas, and validation recommendations.
 ┌─────────────────────────────▼────────────────────────────────────┐
 │ analyzers/                                                       │
 │                                                                  │
-│ change_loader.py -> load JSON or CSV into raw change dicts        │
-│ change_parser.py -> validate, normalize, fill defaults            │
-│ categorizer.py -> classify each change by keyword scoring         │
+│ change_loader.py -> load JSON or CSV into raw change dicts       │
+│ change_parser.py -> validate, normalize, fill defaults           │
+│ categorizer.py -> classify each change by keyword scoring        │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
 ┌─────────────────────────────▼────────────────────────────────────┐
 │ scoring/                                                         │
 │                                                                  │
-│ risk_scorer.py -> deterministic rule-based risk score 0-100       │
+│ risk_scorer.py -> deterministic rule-based risk score 0-100      │
 │ no AI involved - fully reproducible                              │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
 ┌─────────────────────────────▼────────────────────────────────────┐
 │ prompts/                                                         │
 │                                                                  │
-│ system_release.txt -> release manager persona + JSON schema       │
-│ user_release.txt -> structured context injected here              │
+│ system_release.txt -> release manager persona + JSON schema      │
+│ user_release.txt -> structured context injected here             │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
 ┌─────────────────────────────▼────────────────────────────────────┐
 │ analyzers/ai_analyzer.py                                         │
 │                                                                  │
-│ GPT-4o -> JSON response -> parsed release report dict              │
+│ GPT-4o -> JSON response -> parsed release report dict            │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
 ┌─────────────────────────────▼────────────────────────────────────┐
@@ -52,6 +52,7 @@ testing focus areas, and validation recommendations.
 │ Categories | Risk Score | Release Summary | Testing Focus        │
 │ Impacted Components | Risk Summary | Validation Areas            │
 └──────────────────────────────────────────────────────────────────┘
+```
 
 ### Component Breakdown
 
