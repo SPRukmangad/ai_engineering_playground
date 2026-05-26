@@ -19,7 +19,7 @@ testing focus areas, and validation recommendations.
 └─────────────────────────────┬────────────────────────────────────┘
                               |
                               ▼
-┌─────────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────────────┐
 │ analyzers/                                                       │
 │                                                                  │
 │ change_loader.py -> load JSON or CSV into raw change dicts       │
@@ -123,7 +123,6 @@ build-change-intelligence/
 ```
 
 ---
-
 ## Setup Instructions
 
 ### 1. Clone and enter the project
@@ -241,7 +240,6 @@ python app.py --input sample_data/release_v2_5_0.json --release "v2.5.0" --no-ai
    • Load test payment retry logic under simulated gateway failure conditions
 
 ═════════════════════════════════════════════════════════════════
-
 ```
 
 ## Future Improvements
