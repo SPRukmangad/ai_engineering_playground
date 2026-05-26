@@ -1,0 +1,124 @@
+{
+  "changes": [
+    {
+      "id": "CHG-001",
+      "ticket": "PROJ-1142",
+      "title": "Add OAuth2 login support for enterprise SSO",
+      "description": "Implement OAuth2 authorization code flow to support enterprise SSO providers. Adds new /auth/oauth2/callback endpoint and session token management.",
+      "author": "sarah.chen",
+      "component": "Auth Service",
+      "change_type": "feature",
+      "risk_label": "high",
+      "impacted_systems": ["Auth Service", "API Gateway", "User Service"],
+      "commit_hash": "a3f9d12"
+    },
+    {
+      "id": "CHG-002",
+      "ticket": "PROJ-1156",
+      "title": "Fix race condition in order processing queue",
+      "description": "Resolves a race condition in the OrderProcessor where concurrent requests could result in duplicate order entries under high load. Added distributed lock via Redis.",
+      "author": "james.okafor",
+      "component": "Order Service",
+      "change_type": "bugfix",
+      "risk_label": "high",
+      "impacted_systems": ["Order Service", "Payment Service"],
+      "commit_hash": "b7c2e45"
+    },
+    {
+      "id": "CHG-003",
+      "ticket": "PROJ-1089",
+      "title": "Migrate user_profiles table to new schema",
+      "description": "Schema migration to support multi-tenancy. Adds tenant_id column, updates indexes, and backfills existing records. Requires maintenance window.",
+      "author": "priya.nair",
+      "component": "Database",
+      "change_type": "infrastructure",
+      "risk_label": "critical",
+      "impacted_systems": ["User Service", "Database", "Reporting Service"],
+      "commit_hash": "c1d8f67"
+    },
+    {
+      "id": "CHG-004",
+      "ticket": "PROJ-1201",
+      "title": "Optimise product search query - reduce p99 latency",
+      "description": "Rewrote the product search SQL query to use covering indexes. Benchmarks show 60% reduction in p99 latency from 1200ms to 480ms under load.",
+      "author": "david.kim",
+      "component": "Search Service",
+      "change_type": "performance",
+      "risk_label": "low",
+      "impacted_systems": ["Search Service", "Product Catalogue"],
+      "commit_hash": "d4e5a89"
+    },
+    {
+      "id": "CHG-005",
+      "ticket": "PROJ-1178",
+      "title": "Add payment retry logic with exponential backoff",
+      "description": "Implements retry logic for failed payment gateway calls with exponential backoff (max 3 retries, base delay 500ms). Reduces false payment failures during gateway instability.",
+      "author": "james.okafor",
+      "component": "Payment Service",
+      "change_type": "feature",
+      "risk_label": "medium",
+      "impacted_systems": ["Payment Service", "Order Service"],
+      "commit_hash": "e9f1b23"
+    },
+    {
+      "id": "CHG-006",
+      "ticket": "PROJ-1134",
+      "title": "Update Kubernetes deployment manifests for new node pool",
+      "description": "Updates k8s deployment manifests to target the new high-memory node pool. Adjusts resource requests and limits for order-api and payment-api pods.",
+      "author": "ahmed.hassan",
+      "component": "Infrastructure",
+      "change_type": "infrastructure",
+      "risk_label": "medium",
+      "impacted_systems": ["Order Service", "Payment Service", "Infrastructure"],
+      "commit_hash": "f2a3c56"
+    },
+    {
+      "id": "CHG-007",
+      "ticket": "PROJ-1210",
+      "title": "Add product recommendation carousel to homepage",
+      "description": "New UI component that displays personalised product recommendations on the homepage using the existing recommendation engine API.",
+      "author": "lisa.wang",
+      "component": "Frontend",
+      "change_type": "feature",
+      "risk_label": "low",
+      "impacted_systems": ["Frontend", "Recommendation Service"],
+      "commit_hash": "g5h6i78"
+    },
+    {
+      "id": "CHG-008",
+      "ticket": "PROJ-1195",
+      "title": "Patch CVE-2024-38819 in Spring Framework dependency",
+      "description": "Upgrades spring-core from 6.1.3 to 6.1.14 to patch CVE-2024-38819. No functional changes - dependency upgrade only.",
+      "author": "priya.nair",
+      "component": "API Gateway",
+      "change_type": "bugfix",
+      "risk_label": "high",
+      "impacted_systems": ["API Gateway"],
+      "commit_hash": "h8j9k01"
+    },
+    {
+      "id": "CHG-009",
+      "ticket": "PROJ-1166",
+      "title": "Deprecate legacy v1 API endpoints",
+      "description": "Removes /api/v1/* endpoints that were deprecated in Q2 2024. All active clients have been migrated to v2. Breaking change - v1 callers will receive 410 Gone.",
+      "author": "sarah.chen",
+      "component": "API Gateway",
+      "change_type": "infrastructure",
+      "risk_label": "high",
+      "impacted_systems": ["API Gateway", "External Integrations"],
+      "commit_hash": "i1l2m34"
+    },
+    {
+      "id": "CHG-010",
+      "ticket": "PROJ-1220",
+      "title": "Update internal dashboard copyright footer text",
+      "description": "Minor copy update - changes copyright year from 2023 to 2025 in the internal ops dashboard footer.",
+      "author": "lisa.wang",
+      "component": "Internal Dashboard",
+      "change_type": "miscellaneous",
+      "risk_label": "none",
+      "impacted_systems": ["Internal Dashboard"],
+      "commit_hash": "j3n4o56"
+    }
+  ]
+}
