@@ -4,7 +4,7 @@ A clean, terminal-based **Retrieval-Augmented Generation (RAG)** pipeline built 
 LangChain, OpenAI embeddings, and FAISS. Drop plain-text documents into a folder, ask
 questions, and get grounded answers - no hallucinated facts, sources always cited.
 
-> Personal R&D project — exploring production RAG patterns in a minimal, readable codebase.
+> Personal R&D project - exploring production RAG patterns in a minimal, readable codebase.
 
 ---
 
@@ -15,8 +15,8 @@ questions, and get grounded answers - no hallucinated facts, sources always cite
 │ Ingestion Path                                              │
 │ (first run only)                                            │
 │                                                             │
-│ sample_docs/*.txt → Loader → Splitter → Embeddings          │
-│ │                                                           │
+│ sample_docs/*.txt -> Loader -> Splitter -> Embeddings       │
+│     │                                                       │
 │ FAISS Index                                                 │
 │ (saved to disk)                                             │
 └─────────────────────────────────────────────────────────────┘
@@ -25,7 +25,7 @@ questions, and get grounded answers - no hallucinated facts, sources always cite
 ┌─────────────────────────────────────────────────────────────┐
 │ Query Path                                                  │
 │                                                             │
-│ User Question → Embed Query → FAISS Similarity Search       │
+│ User Question -> Embed Query -> FAISS Similarity Search     │
 │ │                                                           │
 │ Top-K Chunks                                                │
 │ │                                                           │
@@ -52,32 +52,32 @@ questions, and get grounded answers - no hallucinated facts, sources always cite
 
 ## How RAG Works
 
-Traditional LLMs answer from what they memorized during training — that knowledge is frozen
+Traditional LLMs answer from what they memorized during training - that knowledge is frozen
 and generic. RAG solves this by:
 
-1. **Indexing** — your documents are chunked and converted to embeddings (vectors that capture
+1. **Indexing** - your documents are chunked and converted to embeddings (vectors that capture
    semantic meaning), then stored in a vector database (FAISS).
-2. **Retrieval** — when you ask a question, it is also embedded and the most semantically
+2. **Retrieval** - when you ask a question, it is also embedded and the most semantically
    similar document chunks are fetched from the index.
-3. **Augmented Generation** — the retrieved chunks are injected into the prompt as grounding
+3. **Augmented Generation** - the retrieved chunks are injected into the prompt as grounding
    context, and the LLM is instructed to answer *only* from that context.
 
 The result: answers that are factual, specific to *your* data, and traceable back to source
 documents.
 
 ```
-    Question ──embed──► query vector
-              │
+Question ── embed ── ► query vector
+              |
     FAISS similarity search
-              │
+              |
     Top-K doc chunks
-              │
-┌─────────────┴──────────────┐
+              |
+┌────────────────────────────┐
 │ Prompt = context + question│
 └─────────────┬──────────────┘
-              │
+              |
             GPT-4o
-              │
+              |
         Grounded Answer
 ```
 
@@ -88,7 +88,7 @@ documents.
 ```
 rag-document-assistant/
 │
-├── app.py # Full pipeline: load → chunk → embed → query loop
+├── app.py # Full pipeline: load -> chunk -> embed -> query loop
 ├── requirements.txt # Pinned dependencies
 ├── .env # OPENAI_API_KEY (git-ignored)
 ├── .gitignore
@@ -156,7 +156,7 @@ python app.py
 ```
 
 On first run, the app builds the FAISS index and saves it to faiss_index/.
-On subsequent runs, it loads the saved index instantly — no re-embedding needed.
+On subsequent runs, it loads the saved index instantly - no re-embedding needed.
 
 To force a full re-index (e.g. after adding new documents):
 
@@ -173,7 +173,7 @@ rm -rf faiss_index/ && python app.py
 [INFO] FAISS index saved to 'faiss_index/'.
 
 ═══════════════════════════════════════════════════════
-  RAG Document Assistant — ready.
+  RAG Document Assistant - ready.
   Type your question, or 'exit' to quit.
 ═══════════════════════════════════════════════════════
 
@@ -182,12 +182,12 @@ You: What is the return policy?
 
 ## Future Improvements
 
-- [ ] **PDF & Markdown support** — extend `DirectoryLoader` with `PyPDFLoader` and `UnstructuredMarkdownLoader`
-- [ ] **Parent-child chunking** — store small child chunks for retrieval, inject large parent chunks as context (`ParentDocumentRetriever`)
-- [ ] **MMR retrieval** — switch to `search_type="mmr"` to reduce redundant chunks in Top-K results
-- [ ] **Streaming responses** — use `ChatOpenAI(streaming=True)` with a callback handler for token-by-token output
-- [ ] **Conversation memory** — add `ConversationBufferMemory` to support multi-turn follow-up questions
-- [ ] **RAGAS evaluation** — integrate [ragas.io](https://ragas.io) for automated faithfulness and relevance scoring
-- [ ] **Swap FAISS → Chroma** — drop-in replacement with built-in metadata filtering
-- [ ] **Async ingestion pipeline** — `asyncio` + batch embedding calls for large document corpora
-- [ ] **CLI flags** — `--rebuild-index`, `--docs-dir`, `--model` via `argparse`
+- [ ] **PDF & Markdown support** - extend `DirectoryLoader` with `PyPDFLoader` and `UnstructuredMarkdownLoader`
+- [ ] **Parent-child chunking** - store small child chunks for retrieval, inject large parent chunks as context (`ParentDocumentRetriever`)
+- [ ] **MMR retrieval** - switch to `search_type="mmr"` to reduce redundant chunks in Top-K results
+- [ ] **Streaming responses** - use `ChatOpenAI(streaming=True)` with a callback handler for token-by-token output
+- [ ] **Conversation memory** - add `ConversationBufferMemory` to support multi-turn follow-up questions
+- [ ] **RAGAS evaluation** - integrate [ragas.io](https://ragas.io) for automated faithfulness and relevance scoring
+- [ ] **Swap FAISS -> Chroma** - drop-in replacement with built-in metadata filtering
+- [ ] **Async ingestion pipeline** - `asyncio` + batch embedding calls for large document corpora
+- [ ] **CLI flags** - `--rebuild-index`, `--docs-dir`, `--model` via `argparse`
