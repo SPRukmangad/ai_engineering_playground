@@ -18,7 +18,8 @@ testing focus areas, and validation recommendations.
 │ --input release.json --format json --release v2.5.0              │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
-┌─────────────────────────────▼────────────────────────────────────┐
+                              ▼
+┌─────────────────────────────────────────────────────────────────┐
 │ analyzers/                                                       │
 │                                                                  │
 │ change_loader.py -> load JSON or CSV into raw change dicts       │
@@ -26,27 +27,31 @@ testing focus areas, and validation recommendations.
 │ categorizer.py -> classify each change by keyword scoring        │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
-┌─────────────────────────────▼────────────────────────────────────┐
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
 │ scoring/                                                         │
 │                                                                  │
 │ risk_scorer.py -> deterministic rule-based risk score 0-100      │
 │ no AI involved - fully reproducible                              │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
-┌─────────────────────────────▼────────────────────────────────────┐
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
 │ prompts/                                                         │
 │                                                                  │
 │ system_release.txt -> release manager persona + JSON schema      │
 │ user_release.txt -> structured context injected here             │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
-┌─────────────────────────────▼────────────────────────────────────┐
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
 │ analyzers/ai_analyzer.py                                         │
 │                                                                  │
 │ GPT-4o -> JSON response -> parsed release report dict            │
 └─────────────────────────────┬────────────────────────────────────┘
                               |
-┌─────────────────────────────▼────────────────────────────────────┐
+                              ▼
+┌──────────────────────────────────────────────────────────────────┐
 │ Terminal Output                                                  │
 │                                                                  │
 │ Categories | Risk Score | Release Summary | Testing Focus        │
@@ -75,12 +80,12 @@ testing focus areas, and validation recommendations.
 1. Load -> read JSON or CSV input file
 2. Parse -> validate required fields, normalize optional fields
 3. Categorize -> keyword scoring classifies each change into:
-4. feature | bugfix | infrastructure | performance | risk | miscellaneous
-5. Score -> rule-based risk engine assigns 0-100 score based on:
-6. risk labels + categories + change volume + component spread
-7. Analyze -> GPT-4o generates structured release report
+   feature | bugfix | infrastructure | performance | risk | miscellaneous
+4. Score -> rule-based risk engine assigns 0-100 score based on:
+5. risk labels + categories + change volume + component spread
+6. Analyze -> GPT-4o generates structured release report
 (skippable with --no-ai flag)
-8. Display -> formatted terminal report with all findings
+7. Display -> formatted terminal report with all findings
 
 ---
 
@@ -116,7 +121,6 @@ build-change-intelligence/
 └── release_v1_8_2.csv # 6 changes - CSV format example
 
 ```
-
 
 ---
 
