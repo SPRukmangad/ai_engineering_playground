@@ -1,7 +1,7 @@
 # AI Engineering Playground
 
 Collection of GenAI, RAG, AI workflow automation, and LLM engineering experiments inspired by real-world AI productivity systems and developer tooling workflows.
-Personal AI engineering workspace focused on GenAI applications, RAG systems, AI workflow automation, and developer productivity tooling.
+Personal AI engineering workspace focused on actual GenAI applications, AI workflow automation, and developer productivity tooling.
 ---
 
 ## About
@@ -113,10 +113,10 @@ ai_engineering_playground/
 
 ## Future Goals
 
-* Expand into multimodal RAG
-* Experiment with agent orchestration
-* Explore evaluation frameworks for GenAI systems
-* Build production-grade AI workflow automation pipelines
-* Explore scalable AI-assisted developer tooling
-* AI Workflow Automation Experiments
+- [] Expand into multimodal RAG
+- [] Experiment with agent orchestration
+- [] Explore evaluation frameworks for GenAI systems
+- [] Build production-grade AI workflow automation pipelines
+- [] Explore scalable AI-assisted developer tooling
+- [] AI Workflow Automation Experiments
 
