@@ -53,7 +53,7 @@ Planned Features:
 - debugging recommendations
 - prompt-driven crash analysis
 
-### 3. Build Change Intelligence (In Progress)
+### 3. [Build Change Intelligence](./build-change-intelligence)
 
 AI-assisted engineering release analysis platform for summarizing build changes, risk areas, and impacted systems.
 
@@ -65,7 +65,7 @@ Planned Features:
 - impact analysis
 - engineering workflow insights
 
-### 4. MCP Agent Playground (Planned)
+### 4. MCP Agent Playground (In Progress)
 
 Experiments involving MCP integrations, AI agents, and workflow automation pipelines.
 
