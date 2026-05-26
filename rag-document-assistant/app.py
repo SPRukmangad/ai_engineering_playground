@@ -123,7 +123,7 @@ def build_qa_chain(vector_store):
 def run_query_loop(chain):
     """Interactive terminal Q&A loop."""
     print("\n" + "═" * 55)
-    print("  RAG Document Assistant — ready.")
+    print("  RAG Document Assistant - ready.")
     print("  Type your question, or 'exit' to quit.")
     print("═" * 55 + "\n")
 
