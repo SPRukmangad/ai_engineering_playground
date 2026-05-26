@@ -15,34 +15,38 @@ A terminal-based AI-powered **Root Cause Analysis (RCA)** tool for production lo
 │ --log app.log --stack trace.txt --meta metadata.json            │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
-┌──────────────────────────▼──────────────────────────────────────┐
+                           ▼ 
+┌─────────────────────────────────────────────────────────────────┐
 │ analyzers/                                                      │
 │                                                                 │
-│ log_parser.py -> extract errors, warnings, crashes               │
-│ stack_trace_parser.py -> parse frames, exception type            │
-│ preprocessor.py -> combine + trim -> structured context           │
+│ log_parser.py -> extract errors, warnings, crashes              │
+│ stack_trace_parser.py -> parse frames, exception type           │
+│ preprocessor.py -> combine + trim -> structured context         │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
-┌──────────────────────────▼──────────────────────────────────────┐
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
 │ prompts/                                                        │
 │                                                                 │
-│ system_rca.txt -> expert SRE system persona + JSON schema        │
-│ user_rca.txt -> structured context injected here                 │
-│ system_followup.txt -> interactive Q&A persona                   │
+│ system_rca.txt -> expert SRE system persona + JSON schema       │
+│ user_rca.txt -> structured context injected here                │
+│ system_followup.txt -> interactive Q&A persona                  │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
-┌──────────────────────────▼──────────────────────────────────────┐
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
 │ analyzers/rca_engine.py                                         │
 │                                                                 │
-│ GPT-4o -> JSON response -> parsed report dict                     │
+│ GPT-4o -> JSON response -> parsed report dict                   │
 └──────────────────────────┬──────────────────────────────────────┘
                            │
-┌──────────────────────────▼──────────────────────────────────────┐
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
 │ Terminal Output                                                 │
 │                                                                 │
 │ Severity | Subsystem | Summary | Root Cause | Recommendations   │
 │                                                                 │
-│ Optional: --interactive -> follow-up Q&A loop                    │
+│ Optional: --interactive -> follow-up Q&A loop                   │
 └─────────────────────────────────────────────────────────────────┘
 
 ```
@@ -206,23 +210,23 @@ python app.py --log sample_logs/app_crash.log --interactive
 
 ### Future Improvements
 
-PDF and structured log support - parse JSON logs (Datadog, CloudWatch format) and PDF incident reports
+- [ ] **PDF and structured log support** - parse JSON logs (Datadog, CloudWatch format) and PDF incident reports
 
-Multi-file ingestion - pass a directory of logs and correlate events across services
+- [ ] **Multi-file ingestion** - pass a directory of logs and correlate events across services
 
-Timeline reconstruction - extract and sort all timestamped events across log files into a single incident timeline
+- [ ] **Timeline reconstruction** - extract and sort all timestamped events across log files into a single incident timeline
 
-Severity trend detection - plot error frequency over time to identify exact degradation onset
+- [ ] **Severity trend detection** - plot error frequency over time to identify exact degradation onset
 
-RCA report export - save structured output as a Markdown or JSON incident report file
+- [ ] **RCA report export** - save structured output as a Markdown or JSON incident report file
 
-LangChain agent mode - replace single-shot prompt with a ReAct agent that reasons over logs iteratively
+- [ ] **LangChain agent mode** - replace single-shot prompt with a ReAct agent that reasons over logs iteratively
 
-Slack / PagerDuty integration - post RCA summary to an incident channel automatically
+- [ ] **Slack / PagerDuty integration** - post RCA summary to an incident channel automatically
 
-Fine-tuned model - evaluate whether a domain-specific fine-tuned model outperforms GPT-4o on log RCA tasks
+- [ ] **Fine-tuned model** - evaluate whether a domain-specific fine-tuned model outperforms GPT-4o on log RCA tasks
 
-Local model support - swap OpenAI for a local Ollama model for air-gapped or sensitive environments
+- [ ] **Local model support** - swap OpenAI for a local Ollama model for air-gapped or sensitive environments
 
 
 ---
