@@ -1,0 +1,10 @@
+Analyze the following engineering change set for release: {release}
+
+{context}
+
+Based on the change data above, respond with a JSON object containing:
+- release_summary
+- impacted_components
+- testing_focus
+- risk_summary
+- validation_areas
